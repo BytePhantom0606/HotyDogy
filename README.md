@@ -1,469 +1,712 @@
-# HotyDogy - Full-Stack Fastfood E-Commerce Application
+# HotyDogy - Premium Fast Food Website
 
-![HotyDogy Logo](https://img.shields.io/badge/HotyDogy-Savor%20the%20Sizzle!-orange?style=for-the-badge)
+<div align="center">
 
-A complete, production-ready full-stack web application for a fastfood business, featuring a stunning React frontend, robust Node.js/Express backend, and MongoDB database.
+![HotyDogy Logo](https://via.placeholder.com/200x200/f97316/ffffff?text=HotyDogy)
 
-## 🚀 Features
+**A modern, production-ready fast food ordering website**
 
-### Frontend (React + Vite)
-- **Modern UI/UX**: Beautiful, responsive design with Tailwind CSS
-- **Dark/Light Mode**: Toggle between themes with persistent preference
-- **Smooth Animations**: Powered by Framer Motion
-- **State Management**: Redux Toolkit for global state
-- **Data Fetching**: TanStack Query (React Query) for efficient caching
-- **Form Handling**: React Hook Form with validation
-- **Interactive Components**: Carousels, modals, and dynamic content
-- **Real-time Cart**: Persistent shopping cart for logged-in and guest users
+Built with React, Node.js, Express, MongoDB, and Tailwind CSS
 
-### Backend (Node.js + Express)
-- **RESTful API**: Well-structured endpoints following best practices
-- **Authentication**: JWT-based auth with bcrypt password hashing
-- **Database**: MongoDB with Mongoose ODM
-- **API Documentation**: Interactive Swagger UI at `/api-docs`
-- **Security**: Helmet, CORS, rate limiting, input validation
-- **Error Handling**: Centralized error middleware
+[Demo](#) | [Documentation](#installation) | [Report Bug](#) | [Request Feature](#)
 
-### Key Functionality
-- 🍔 **Menu Browsing**: Search, filter by category/price, view detailed items
-- 🛒 **Shopping Cart**: Add/remove items, customize orders, persistent across sessions
-- 📦 **Order Placement**: Checkout with delivery/pickup options, guest checkout support
-- 👤 **User Accounts**: Registration, login, profile management, order history
-- 🎨 **Admin Dashboard**: Manage menu items (CRUD operations) - Admin only
-- 📍 **Locations**: Interactive map showing restaurant locations
-- 📧 **Contact Form**: Send inquiries via email
-- 📱 **Fully Responsive**: Works seamlessly on desktop, tablet, and mobile
+</div>
+
+---
+
+## 📋 Table of Contents
+
+- [About](#about)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Project Structure](#project-structure)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Running the Application](#running-the-application)
+- [Deployment on Port 80](#deployment-on-port-80)
+- [Configuration](#configuration)
+- [API Documentation](#api-documentation)
+- [Screenshots](#screenshots)
+- [Troubleshooting](#troubleshooting)
+- [License](#license)
+
+---
+
+## 🍔 About
+
+**HotyDogy** is a professional, production-level fast food website that provides a complete online ordering experience. Customers can browse the menu, add items to cart, place orders, and track their order status. The admin dashboard allows restaurant staff to manage orders in real-time.
+
+---
+
+## ✨ Features
+
+### Customer Features
+- 🏠 **Beautiful Home Page** - Modern hero section with animations
+- 🍽️ **Dynamic Menu** - Browse hot dogs, burgers, fries, and drinks
+- 🛒 **Shopping Cart** - Add/remove items, update quantities
+- 💳 **Checkout System** - Complete order form with validation
+- 📦 **Order Tracking** - Track orders by order number
+- 🌙 **Dark/Light Theme** - Toggle between themes
+- 📱 **Responsive Design** - Works on desktop, tablet, and mobile
+- 🎨 **Smooth Animations** - Framer Motion animations throughout
+
+### Admin Features
+- 📊 **Dashboard** - View statistics and metrics
+- 📋 **Order Management** - View and update order statuses
+- 💰 **Revenue Tracking** - Monitor total revenue
+- 🔄 **Real-time Updates** - Refresh orders on demand
+
+### Technical Features
+- ⚡ **Fast Performance** - Optimized with Vite
+- 🔐 **API Validation** - Express validator for data integrity
+- 💾 **MongoDB Database** - Persistent data storage
+- 🎯 **RESTful API** - Clean API architecture
+- 🔄 **Auto-reload** - Hot module replacement in development
+
+---
 
 ## 🛠️ Tech Stack
 
 ### Frontend
 - **React 18** - UI library
 - **Vite** - Build tool and dev server
-- **Redux Toolkit** - State management
-- **TanStack Query** - Server state management
-- **React Router** - Navigation
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
-- **React Hook Form** - Form handling
-- **React Toastify** - Notifications
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Animation library
+- **Lucide React** - Icon library
 - **Axios** - HTTP client
-- **React Slick** - Carousel
-- **React Leaflet** - Maps
+- **React Router** - Navigation
+- **React Hot Toast** - Notifications
 
 ### Backend
 - **Node.js** - Runtime environment
 - **Express.js** - Web framework
 - **MongoDB** - Database
-- **Mongoose** - ODM
-- **JWT** - Authentication
-- **Bcrypt.js** - Password hashing
-- **Joi** - Validation
-- **Swagger** - API documentation
-- **Nodemailer** - Email sending
-- **Helmet** - Security headers
-- **Morgan** - HTTP logging
+- **Mongoose** - ODM for MongoDB
+- **CORS** - Cross-origin resource sharing
+- **Morgan** - HTTP request logger
+- **Dotenv** - Environment variables
 
-## 📋 Prerequisites
+---
+
+## 📁 Project Structure
+
+```
+/var/www/fastfood/
+├── backend/
+│   ├── models/
+│   │   ├── MenuItem.js          # Menu item schema
+│   │   └── Order.js              # Order schema
+│   ├── routes/
+│   │   ├── menu.js               # Menu API routes
+│   │   └── orders.js             # Order API routes
+│   ├── server.js                 # Express server
+│   ├── package.json              # Backend dependencies
+│   └── .env                      # Environment variables
+│
+├── frontend/
+│   ├── public/
+│   │   ├── favicon.svg           # HotyDogy favicon
+│   │   └── favicon.ico           # Icon symlink
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── Navbar.jsx        # Navigation bar
+│   │   │   └── Footer.jsx        # Footer component
+│   │   ├── context/
+│   │   │   ├── ThemeContext.jsx  # Theme provider
+│   │   │   └── CartContext.jsx   # Cart state management
+│   │   ├── pages/
+│   │   │   ├── Home.jsx          # Landing page
+│   │   │   ├── Menu.jsx          # Menu page
+│   │   │   ├── Cart.jsx          # Shopping cart & checkout
+│   │   │   ├── Contact.jsx       # Contact page
+│   │   │   ├── OrderTracking.jsx # Track orders
+│   │   │   └── Admin.jsx         # Admin dashboard
+│   │   ├── services/
+│   │   │   └── api.js            # API service layer
+│   │   ├── App.jsx               # Main app component
+│   │   ├── main.jsx              # Entry point
+│   │   └── index.css             # Global styles
+│   ├── index.html                # HTML template
+│   ├── vite.config.js            # Vite configuration
+│   ├── tailwind.config.js        # Tailwind configuration
+│   ├── postcss.config.js         # PostCSS configuration
+│   ├── package.json              # Frontend dependencies
+│   └── .env                      # Frontend env variables
+│
+└── README.md                     # This file
+```
+
+---
+
+## 📦 Prerequisites
 
 Before you begin, ensure you have the following installed:
 
-- **Node.js**: Version 18.0.0 or higher
-- **npm**: Version 9.0.0 or higher
-- **MongoDB**: Local installation or MongoDB Atlas account
+- **Node.js** (v16 or higher) - [Download](https://nodejs.org/)
+- **npm** (comes with Node.js)
+- **MongoDB** (v5 or higher) - [Installation Guide](https://www.mongodb.com/docs/manual/installation/)
+- **Nginx** or **Apache** (for port 80 deployment)
+- **Git** (optional, for cloning)
 
-You can verify your installations:
+### Check Installed Versions
 
 ```bash
-node --version  # Should be v18.0.0 or higher
-npm --version   # Should be v9.0.0 or higher
+node --version    # Should be v16+
+npm --version     # Should be 8+
+mongod --version  # Should be 5.0+
 ```
 
-## 🔧 Installation & Setup
+---
 
-### 1. Clone the Repository
+## 🚀 Installation
+
+### Step 1: Clone or Navigate to Project Directory
 
 ```bash
-git clone https://github.com/yourusername/hotydogy.git
-cd hotydogy
+cd /var/www/fastfood
 ```
 
-### 2. Install Dependencies
-
-Install both root and client dependencies:
+If you need to set proper permissions:
 
 ```bash
-npm run install-all
+sudo chown -R $USER:$USER /var/www/fastfood
 ```
 
-Or manually:
+### Step 2: Install Backend Dependencies
 
 ```bash
-# Install server dependencies
+cd /var/www/fastfood/backend
 npm install
+```
 
-# Install client dependencies
-cd client
+Expected packages:
+- express
+- mongoose
+- cors
+- dotenv
+- morgan
+- express-validator
+
+### Step 3: Install Frontend Dependencies
+
+```bash
+cd /var/www/fastfood/frontend
 npm install
-cd ..
 ```
 
-### 3. Environment Configuration
+Expected packages:
+- react
+- react-dom
+- react-router-dom
+- framer-motion
+- lucide-react
+- axios
+- react-hot-toast
+- vite
+- tailwindcss
 
-Create a `.env` file in the root directory:
+### Step 4: Start MongoDB
+
+**On Ubuntu/Kali Linux:**
 
 ```bash
-cp .env.example .env
-```
-
-Edit the `.env` file with your configuration:
-
-```env
-# Server Configuration
-PORT=80
-NODE_ENV=development
-
-# Database Configuration
-MONGODB_URI=mongodb://localhost:27017/hotydogy
-# Or use MongoDB Atlas:
-# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/hotydogy
-
-# JWT Configuration
-JWT_SECRET=your_super_secret_jwt_key_change_this_in_production
-JWT_EXPIRE=7d
-
-# Email Configuration (optional - for contact form)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your-email@gmail.com
-EMAIL_PASS=your-app-password
-EMAIL_FROM=noreply@hotydogy.com
-
-# Frontend URL
-CLIENT_URL=http://localhost:3000
-
-# Admin Credentials
-ADMIN_EMAIL=admin@hotydogy.com
-ADMIN_PASSWORD=Admin@123456
-```
-
-### 4. Database Setup
-
-#### Option A: Local MongoDB
-
-1. Install MongoDB from [mongodb.com](https://www.mongodb.com/try/download/community)
-2. Start MongoDB service:
-
-```bash
-# On macOS
-brew services start mongodb-community
-
-# On Linux
+# Start MongoDB service
 sudo systemctl start mongod
 
-# On Windows
-net start MongoDB
+# Enable MongoDB to start on boot
+sudo systemctl enable mongod
+
+# Check MongoDB status
+sudo systemctl status mongod
 ```
 
-#### Option B: MongoDB Atlas (Cloud)
-
-1. Create a free account at [MongoDB Atlas](https://www.mongodb.com/cloud/atlas)
-2. Create a new cluster
-3. Get your connection string and update `MONGODB_URI` in `.env`
-
-### 5. Seed the Database
-
-Populate the database with sample data:
+**Verify MongoDB is running:**
 
 ```bash
-npm run seed
+mongo --eval 'db.runCommand({ connectionStatus: 1 })'
 ```
 
-This will create:
-- **Admin user**: `admin@hotydogy.com` / `Admin@123456`
-- **Sample user**: `john@example.com` / `password123`
-- **15 menu items** across all categories
+Or for MongoDB 6+:
 
-## 🚀 Running the Application
+```bash
+mongosh --eval 'db.runCommand({ connectionStatus: 1 })'
+```
+
+---
+
+## 🎯 Running the Application
 
 ### Development Mode
 
-Run both frontend and backend concurrently:
+#### Terminal 1: Start Backend Server
 
 ```bash
+cd /var/www/fastfood/backend
 npm run dev
-```
-
-This starts:
-- **Backend**: http://localhost:80
-- **Frontend**: http://localhost:3000
-- **API Docs**: http://localhost:80/api-docs
-
-### Production Mode
-
-Build and run for production:
-
-```bash
-# Build the frontend
-npm run build
-
-# Start the server
+# OR
 npm start
 ```
 
-The app will be available at **http://localhost:80**
+Backend will run on: **http://localhost:5000**
 
-> **Note**: Port 80 requires sudo/admin privileges on Unix systems. Run with `sudo npm start` if needed, or change `PORT` in `.env` to 3001 or 8080.
+#### Terminal 2: Start Frontend Dev Server
 
-## 📚 API Documentation
-
-Interactive API documentation is available via Swagger UI:
-
-**Development**: http://localhost:80/api-docs
-
-### Key Endpoints
-
-#### Authentication
-- `POST /api/auth/register` - Register new user
-- `POST /api/auth/login` - Login user
-- `GET /api/auth/me` - Get current user (protected)
-- `PUT /api/auth/update` - Update profile (protected)
-
-#### Menu
-- `GET /api/menu` - Get all menu items (with filters)
-- `GET /api/menu/:id` - Get single menu item
-- `POST /api/menu` - Create menu item (admin only)
-- `PUT /api/menu/:id` - Update menu item (admin only)
-- `DELETE /api/menu/:id` - Delete menu item (admin only)
-
-#### Cart
-- `GET /api/cart` - Get user's cart
-- `POST /api/cart` - Add item to cart
-- `PUT /api/cart/:itemId` - Update cart item
-- `DELETE /api/cart/:itemId` - Remove item from cart
-- `DELETE /api/cart` - Clear cart
-
-#### Orders
-- `POST /api/orders` - Create new order
-- `GET /api/orders` - Get user's orders (protected)
-- `GET /api/orders/:id` - Get single order
-
-#### Contact
-- `POST /api/contact` - Send contact message
-
-## 👥 User Accounts
-
-### Admin Account
-- **Email**: admin@hotydogy.com
-- **Password**: Admin@123456
-- **Access**: Full admin dashboard for menu management
-
-### Sample User Account
-- **Email**: john@example.com
-- **Password**: password123
-- **Access**: Regular user features
-
-### Guest Checkout
-Users can browse menu and place orders without creating an account.
-
-## 🗂️ Project Structure
-
-```
-hotydogy/
-├── client/                 # React frontend
-│   ├── public/            # Static files
-│   ├── src/
-│   │   ├── components/    # Reusable components
-│   │   │   ├── common/    # Common components (Loading, ProtectedRoute)
-│   │   │   ├── layout/    # Layout components (Navbar, Footer)
-│   │   │   └── menu/      # Menu-specific components
-│   │   ├── pages/         # Page components
-│   │   │   ├── admin/     # Admin pages
-│   │   │   ├── Home.jsx
-│   │   │   ├── Menu.jsx
-│   │   │   ├── Cart.jsx
-│   │   │   ├── Checkout.jsx
-│   │   │   └── ...
-│   │   ├── services/      # API service functions
-│   │   ├── store/         # Redux store and slices
-│   │   ├── utils/         # Utility functions
-│   │   ├── App.jsx        # Main app component
-│   │   ├── main.jsx       # Entry point
-│   │   └── index.css      # Global styles
-│   ├── package.json
-│   ├── vite.config.js
-│   └── tailwind.config.js
-├── server/                # Node.js backend
-│   ├── config/           # Configuration files
-│   ├── middleware/       # Custom middleware
-│   │   ├── auth.js       # Authentication middleware
-│   │   ├── errorHandler.js
-│   │   └── rateLimiter.js
-│   ├── models/           # Mongoose models
-│   │   ├── User.js
-│   │   ├── MenuItem.js
-│   │   ├── Order.js
-│   │   └── Cart.js
-│   ├── routes/           # API routes
-│   │   ├── auth.js
-│   │   ├── menu.js
-│   │   ├── cart.js
-│   │   ├── order.js
-│   │   └── contact.js
-│   ├── seed.js           # Database seeder
-│   └── server.js         # Server entry point
-├── .env.example          # Environment variables template
-├── .gitignore
-├── package.json
-└── README.md
-```
-
-## 🔐 Security Features
-
-- **JWT Authentication**: Secure token-based authentication
-- **Password Hashing**: Bcrypt with salt rounds
-- **Input Validation**: Joi and express-validator
-- **Rate Limiting**: Prevents brute-force attacks
-- **Helmet**: Security headers
-- **CORS**: Configured cross-origin requests
-- **MongoDB Injection Prevention**: Mongoose sanitization
-
-## 🎨 Design Features
-
-- **Responsive Design**: Mobile-first approach with Tailwind CSS
-- **Dark Mode**: System preference detection + manual toggle
-- **Smooth Animations**: Page transitions and micro-interactions
-- **Loading States**: Spinners and skeleton screens
-- **Toast Notifications**: User feedback for all actions
-- **Error Boundaries**: Graceful error handling
-
-## 🧪 Testing the Application
-
-### Manual Testing Checklist
-
-1. **Browse Menu**
-   - Visit `/menu`
-   - Test category filters
-   - Search for items
-   - View item details
-
-2. **Shopping Cart**
-   - Add items to cart
-   - Modify quantities
-   - Remove items
-   - Test persistence across pages
-
-3. **Checkout Flow**
-   - Add items to cart
-   - Proceed to checkout
-   - Fill delivery information
-   - Place order
-   - View confirmation
-
-4. **User Authentication**
-   - Register new account
-   - Login
-   - View profile and order history
-   - Logout
-
-5. **Admin Dashboard**
-   - Login as admin
-   - Navigate to `/admin`
-   - Add/edit/delete menu items
-   - View all orders
-
-6. **Additional Pages**
-   - Visit About page
-   - View Locations with map
-   - Submit contact form
-
-## 🐛 Troubleshooting
-
-### Port 80 Access Denied
-
-**Issue**: Cannot bind to port 80 without privileges
-
-**Solutions**:
 ```bash
-# Option 1: Use sudo (Unix/Linux/Mac)
-sudo npm start
-
-# Option 2: Change port in .env
-PORT=3001
-
-# Option 3: Use authbind (Linux)
-authbind --deep npm start
+cd /var/www/fastfood/frontend
+npm run dev
 ```
 
-### MongoDB Connection Error
+Frontend will run on: **http://localhost:3000**
 
-**Issue**: Cannot connect to MongoDB
+### Access the Application
 
-**Solutions**:
-1. Ensure MongoDB is running: `brew services list` or `sudo systemctl status mongod`
-2. Check connection string in `.env`
-3. Verify network access for MongoDB Atlas
-4. Check firewall settings
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:5000/api
+- **API Health Check:** http://localhost:5000/api/health
 
-### Frontend Build Errors
+---
 
-**Issue**: Frontend build fails
+## 🌐 Deployment on Port 80
 
-**Solutions**:
+To deploy the application on **port 80** and make it accessible as a production website, follow these steps:
+
+### Option 1: Using Nginx (Recommended)
+
+#### Step 1: Build Frontend for Production
+
 ```bash
-# Clear cache and reinstall
-cd client
-rm -rf node_modules package-lock.json
-npm install
+cd /var/www/fastfood/frontend
 npm run build
 ```
 
-### API 404 Errors
+This creates an optimized production build in `/var/www/fastfood/frontend/dist`
 
-**Issue**: API calls return 404
+#### Step 2: Install Nginx
 
-**Solutions**:
-1. Verify backend is running on correct port
-2. Check proxy configuration in `client/vite.config.js`
-3. Ensure API routes are correctly defined
+```bash
+sudo apt update
+sudo apt install nginx -y
+```
 
-## 📖 Additional Resources
+#### Step 3: Create Nginx Configuration
 
-- [React Documentation](https://react.dev/)
-- [Express.js Guide](https://expressjs.com/)
-- [MongoDB Manual](https://docs.mongodb.com/)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
-- [Redux Toolkit](https://redux-toolkit.js.org/)
+Create a new config file:
 
-## 🤝 Contributing
+```bash
+sudo nano /etc/nginx/sites-available/hotydogy
+```
 
-Contributions are welcome! Please follow these steps:
+Add the following configuration:
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+```nginx
+server {
+    listen 80;
+    listen [::]:80;
+    server_name localhost hotydogy.local;
+
+    # Frontend - Serve static files
+    location / {
+        root /var/www/fastfood/frontend/dist;
+        try_files $uri $uri/ /index.html;
+        add_header Cache-Control "public, max-age=3600";
+    }
+
+    # Backend API - Proxy to Node.js
+    location /api {
+        proxy_pass http://localhost:5000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection 'upgrade';
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_cache_bypass $http_upgrade;
+    }
+
+    # Security headers
+    add_header X-Frame-Options "SAMEORIGIN" always;
+    add_header X-Content-Type-Options "nosniff" always;
+    add_header X-XSS-Protection "1; mode=block" always;
+
+    # Gzip compression
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types text/plain text/css text/xml text/javascript application/x-javascript application/xml+rss application/json;
+}
+```
+
+#### Step 4: Enable the Site
+
+```bash
+# Create symbolic link
+sudo ln -s /etc/nginx/sites-available/hotydogy /etc/nginx/sites-enabled/
+
+# Remove default site (optional)
+sudo rm /etc/nginx/sites-enabled/default
+
+# Test Nginx configuration
+sudo nginx -t
+
+# Restart Nginx
+sudo systemctl restart nginx
+```
+
+#### Step 5: Create Backend Service (systemd)
+
+Create a systemd service for the backend:
+
+```bash
+sudo nano /etc/systemd/system/hotydogy-backend.service
+```
+
+Add the following:
+
+```ini
+[Unit]
+Description=HotyDogy Backend API
+After=network.target mongodb.service
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/var/www/fastfood/backend
+Environment=NODE_ENV=production
+Environment=PORT=5000
+ExecStart=/usr/bin/node server.js
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+```
+
+#### Step 6: Start Backend Service
+
+```bash
+# Reload systemd
+sudo systemctl daemon-reload
+
+# Start the backend service
+sudo systemctl start hotydogy-backend
+
+# Enable to start on boot
+sudo systemctl enable hotydogy-backend
+
+# Check status
+sudo systemctl status hotydogy-backend
+```
+
+#### Step 7: Set Permissions
+
+```bash
+sudo chown -R www-data:www-data /var/www/fastfood
+sudo chmod -R 755 /var/www/fastfood
+```
+
+#### Step 8: Access the Website
+
+Open your browser and navigate to:
+
+```
+http://localhost
+```
+
+Or use your server's IP address:
+
+```
+http://YOUR_SERVER_IP
+```
+
+---
+
+### Option 2: Using Apache
+
+#### Step 1: Install Apache and Enable Modules
+
+```bash
+sudo apt update
+sudo apt install apache2 -y
+sudo a2enmod proxy proxy_http rewrite
+```
+
+#### Step 2: Create Apache Configuration
+
+```bash
+sudo nano /etc/apache2/sites-available/hotydogy.conf
+```
+
+Add:
+
+```apache
+<VirtualHost *:80>
+    ServerName localhost
+    DocumentRoot /var/www/fastfood/frontend/dist
+
+    <Directory /var/www/fastfood/frontend/dist>
+        Options -Indexes +FollowSymLinks
+        AllowOverride All
+        Require all granted
+
+        # React Router support
+        RewriteEngine On
+        RewriteBase /
+        RewriteRule ^index\.html$ - [L]
+        RewriteCond %{REQUEST_FILENAME} !-f
+        RewriteCond %{REQUEST_FILENAME} !-d
+        RewriteRule . /index.html [L]
+    </Directory>
+
+    # Proxy API requests to backend
+    ProxyPreserveHost On
+    ProxyPass /api http://localhost:5000/api
+    ProxyPassReverse /api http://localhost:5000/api
+
+    ErrorLog ${APACHE_LOG_DIR}/hotydogy_error.log
+    CustomLog ${APACHE_LOG_DIR}/hotydogy_access.log combined
+</VirtualHost>
+```
+
+#### Step 3: Enable Site and Restart Apache
+
+```bash
+sudo a2ensite hotydogy
+sudo a2dissite 000-default
+sudo systemctl restart apache2
+```
+
+Follow Step 5-7 from Nginx section for backend service setup.
+
+---
+
+## ⚙️ Configuration
+
+### Backend Environment Variables
+
+Edit `/var/www/fastfood/backend/.env`:
+
+```env
+PORT=5000
+MONGODB_URI=mongodb://localhost:27017/hotydogy
+NODE_ENV=production
+```
+
+### Frontend Environment Variables
+
+Edit `/var/www/fastfood/frontend/.env`:
+
+```env
+VITE_API_URL=/api
+```
+
+---
+
+## 📡 API Documentation
+
+### Menu Endpoints
+
+#### Get All Menu Items
+```
+GET /api/menu
+Query params: ?category=hotdogs|burgers|fries|drinks (optional)
+```
+
+#### Get Single Menu Item
+```
+GET /api/menu/:id
+```
+
+#### Get Items by Category
+```
+GET /api/menu/category/:category
+```
+
+### Order Endpoints
+
+#### Create Order
+```
+POST /api/order
+Body: {
+  customerName: string,
+  customerEmail: string,
+  customerPhone: string,
+  deliveryAddress: string,
+  paymentMethod: 'cash'|'card'|'online',
+  items: [{
+    menuItem: ObjectId,
+    name: string,
+    price: number,
+    quantity: number
+  }],
+  totalPrice: number,
+  notes: string
+}
+```
+
+#### Get Order by ID/Number
+```
+GET /api/order/:id
+```
+
+#### Get All Orders (Admin)
+```
+GET /api/order
+Query params: ?status=pending&limit=50&page=1
+```
+
+#### Update Order Status
+```
+PATCH /api/order/:id/status
+Body: { status: 'pending'|'preparing'|'ready'|'delivered'|'cancelled' }
+```
+
+### Health Check
+```
+GET /api/health
+```
+
+---
+
+## 🖼️ Screenshots
+
+### Home Page
+Modern hero section with call-to-action buttons and animated elements.
+
+### Menu Page
+Grid layout with category filters and add-to-cart functionality.
+
+### Shopping Cart
+Cart management with quantity updates and checkout form.
+
+### Admin Dashboard
+Order management with statistics and status updates.
+
+---
+
+## 🐛 Troubleshooting
+
+### MongoDB Connection Error
+
+```bash
+# Check if MongoDB is running
+sudo systemctl status mongod
+
+# View MongoDB logs
+sudo tail -f /var/log/mongodb/mongod.log
+
+# Restart MongoDB
+sudo systemctl restart mongod
+```
+
+### Backend Won't Start
+
+```bash
+# Check logs
+sudo journalctl -u hotydogy-backend -n 50
+
+# Check if port 5000 is in use
+sudo lsof -i :5000
+
+# Restart service
+sudo systemctl restart hotydogy-backend
+```
+
+### Nginx Configuration Error
+
+```bash
+# Test configuration
+sudo nginx -t
+
+# View error logs
+sudo tail -f /var/log/nginx/error.log
+
+# Restart Nginx
+sudo systemctl restart nginx
+```
+
+### Port 80 Access Denied
+
+```bash
+# Check if port 80 is already in use
+sudo lsof -i :80
+
+# Stop Apache if running
+sudo systemctl stop apache2
+
+# Ensure Nginx has proper permissions
+sudo chown -R www-data:www-data /var/www/fastfood
+```
+
+### Frontend Build Errors
+
+```bash
+# Clear node_modules and reinstall
+cd /var/www/fastfood/frontend
+rm -rf node_modules package-lock.json
+npm install
+
+# Rebuild
+npm run build
+```
+
+---
+
+## 🔧 Useful Commands
+
+```bash
+# View backend logs
+sudo journalctl -u hotydogy-backend -f
+
+# View Nginx access logs
+sudo tail -f /var/log/nginx/access.log
+
+# Restart all services
+sudo systemctl restart mongod
+sudo systemctl restart hotydogy-backend
+sudo systemctl restart nginx
+
+# Check service status
+sudo systemctl status mongod
+sudo systemctl status hotydogy-backend
+sudo systemctl status nginx
+
+# Rebuild frontend and reload
+cd /var/www/fastfood/frontend
+npm run build
+sudo systemctl reload nginx
+```
+
+---
 
 ## 📝 License
 
 This project is licensed under the MIT License.
 
-## 👨‍💻 Author
+---
 
-**HotyDogy Team**
+## 👨‍💻 Development Team
 
-- Website: [hotydogy.com](https://hotydogy.com)
+- **HotyDogy Development Team**
 - Email: info@hotydogy.com
-- GitHub: [@hotydogy](https://github.com/hotydogy)
-
-## 🙏 Acknowledgments
-
-- Images from [Unsplash](https://unsplash.com)
-- Icons from [React Icons](https://react-icons.github.io/react-icons/)
-- Fonts from [Google Fonts](https://fonts.google.com/)
+- Website: http://localhost
 
 ---
 
-**Savor the Sizzle!** 🌭🔥
+## 🎉 Acknowledgments
 
-For questions or support, please open an issue or contact us at support@hotydogy.com.
+- React Team for an amazing library
+- Tailwind CSS for the utility framework
+- Framer Motion for smooth animations
+- MongoDB team for the database
+- Express.js community
+
+---
+
+<div align="center">
+
+**Made with ❤️ by the HotyDogy Team**
+
+⭐ Star this project if you found it helpful!
+
+</div>
